@@ -1,8 +1,8 @@
 import os
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, redirect
 from models import db, FastUser
 from flask_wtf import CSRFProtect
-from forms import RegisterForm
+from forms import RegisterForm, LoginForm
 
 app = Flask(__name__)
 
@@ -28,6 +28,16 @@ def register():
         return redirect("/")
 
     return render_template("register.html", form=form)
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        print(form.data.get("userid"))
+        print(form.data.get("password"))
+
+    return render_template("login.html", form=form)
 
 
 if __name__ == "__main__":

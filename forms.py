@@ -10,3 +10,8 @@ class RegisterForm(FlaskForm):
         "password", validators=[DataRequired(), EqualTo("repassword")]
     )
     repassword = PasswordField("repassword", validators=[DataRequired()])
+
+
+class LoginForm(FlaskForm):
+    userid = StringField("userid", validators=[DataRequired()])
+    password = PasswordField("password", validators=[DataRequired()])
